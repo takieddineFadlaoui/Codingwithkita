@@ -106,6 +106,7 @@ header.shadow {
 .home-img img {
   width: 100%;
   border-radius: 50%;
+  padding-top: 40px;
 }
 .home-text span {
   font-size: var(--medium-font);
