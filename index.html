@@ -1,68 +1,365 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding with kita</title>
-    <!-- Link To CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <title>تقي الدين فضلاوي | مهندس شبكات وواجهات أمامية</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Box Icons -->
-    <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
- 
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f9fafb; /* خلفية رمادية فاتحة */
+            color: #111827;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* الوضع الداكن البسيط */
+        body.dark {
+            background-color: #030712;
+            color: #f9fafb;
+        }
+        body.dark .bg-white {
+            background-color: #111827 !important;
+            border-color: #1f2937 !important;
+        }
+        body.dark .text-gray-600 {
+            color: #9ca3af !important;
+        }
+        body.dark .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            border-color: rgba(75, 85, 99, 0.2);
+        }
+        /* تأثير زجاجي أنيق */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+        /* شريط التقدم المخصص */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 9999px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        .dark .progress-bar {
+            background-color: #374151;
+        }
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+    </style>
 </head>
-<body>
-    <!-- Navbar -->
-    <header>
-        <a href="#" class="logo">Coding with kita</a>
- 
-        <div class="bx bx-menu" id="menu-icon"></div>
- 
-        <ul class="navbar">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <div class="bx bx-moon" id="darkmode"></div>
-        </ul>
-    </header>
-    <!-- Home -->
- 
-    <section class="home" id="home">
-        <div class="social">
-            <a href="#"><i class='bx bxl-github'></i></a>
-            <a href="#"><i class='bx bxl-dribbble' ></i></a>
-            <a href="#"><i class='bx bxl-behance' ></i></a>
-        </div>
-        <div class="home-img">
-            <img src="40.jpg" alt="">
-        </div>
-        <div class="home-text">
-            <span>Hello, I'm</span>
-            <h1>fadlaoui takieddine</h1>
-            <h2>Frontend Developer and Network engineer</h2>
-            <p>Customer service is a very important part of customer service <br>At least, it will be followed<br> yes?</p>
-            <a href="#contact" class="btn">Contact Me</a>
-        </div>
- 
-    </section>
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="heading">
-            <h2>About Me</h2>
-            <span>Introduction</span>
-        </div>
-        <!-- About Content -->
-        <div class="about-container">
-            <div class="about-img">
-                <img src="r.jpg" alt="">
+<body class="antialiased">
+
+    <!-- شريط التنقل (Navbar) -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-card border-b border-white/20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- الشعار -->
+                <a href="#" class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    T.Fadlaoui
+                </a>
+                
+                <!-- قائمة الروابط (مخفية في الجوال) -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-blue-600 transition">الرئيسية</a>
+                    <a href="#about" class="text-sm font-medium hover:text-blue-600 transition">عنّي</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-blue-600 transition">المهارات</a>
+                    <a href="#services" class="text-sm font-medium hover:text-blue-600 transition">الخدمات</a>
+                    <a href="#portfolio" class="text-sm font-medium hover:text-blue-600 transition">أعمالي</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-blue-600 transition">اتصل بي</a>
+                </div>
+
+                <!-- الأزرار: وضع الظلام والقائمة للجوال -->
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i class='bx bx-moon text-xl'></i>
+                    </button>
+                    <button id="menuBtn" class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i class='bx bx-menu text-2xl'></i>
+                    </button>
+                </div>
             </div>
-            <div class="about-text">
-                <p>My name is takieddine, I'm a front-end developer. I have developed many types of front-ends from .
-                    I'm passionate about cutting-edge, pixel-perfect, beautiful interfaces and intuitively implemented UX.</p>
+        </div>
+        <!-- القائمة المنسدلة للجوال -->
+        <div id="mobileMenu" class="hidden md:hidden glass-card border-t border-white/20 p-4">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="text-sm font-medium hover:text-blue-600 transition py-2">الرئيسية</a>
+                <a href="#about" class="text-sm font-medium hover:text-blue-600 transition py-2">عنّي</a>
+                <a href="#skills" class="text-sm font-medium hover:text-blue-600 transition py-2">المهارات</a>
+                <a href="#services" class="text-sm font-medium hover:text-blue-600 transition py-2">الخدمات</a>
+                <a href="#portfolio" class="text-sm font-medium hover:text-blue-600 transition py-2">أعمالي</a>
+                <a href="#contact" class="text-sm font-medium hover:text-blue-600 transition py-2">اتصل بي</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16"> <!-- لتعويض ارتفاع النافبار الثابت -->
+
+        <!-- القسم الرئيسي (Home) -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <!-- عناصر خلفية متحركة (دوائر ضبابية) -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- النص -->
+                    <div class="space-y-6">
+                        <span class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400">مرحباً، أنا</span>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                            تقي الدين<br>فضلاوي
+                        </h1>
+                        <h2 class="text-xl md:text-2xl text-gray-600 dark:text-gray-300">
+                            مطور واجهات أمامية <span class="text-blue-600 dark:text-blue-400">&</span> مهندس شبكات
+                        </h2>
+                        <p class="text-gray-600 dark:text-gray-400 max-w-lg">
+                            شغوف ببناء تجارب رقمية سلسة وجذابة. أحول الأفكار إلى واقع باستخدام كود نظيف وأداء عالي.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition duration-300">
+                                تواصل معي
+                            </a>
+                            <a href="cv taki.pdf" class="px-6 py-3 border border-gray-300 dark:border-gray-700 font-medium rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                                السيرة الذاتية
+                            </a>
+                        </div>
+                        <!-- أيقونات التواصل -->
+                        <div class="flex space-x-4 pt-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class='bx bxl-github'></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class='bx bxl-dribbble'></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class='bx bxl-behance'></i></a>
+                        </div>
+                    </div>
+                    <!-- الصورة -->
+                    <div class="relative flex justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-20"></div>
+                        <img src="40.jpg" alt="تقي الدين" class="relative w-80 h-80 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم عنّي (About) -->
+        <section id="about" class="py-20 bg-white dark:bg-gray-900/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">عنّي</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="flex justify-center">
+                        <img src="r.jpg" alt="تقي الدين" class="rounded-2xl shadow-2xl w-96">
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">
+                            اسمي <span class="font-semibold text-gray-900 dark:text-white">تقي الدين فضلاوي</span>، مطور واجهات أمامية ومهندس شبكات. 
+                            لدي شغف كبير ببناء واجهات مستخدم جميلة وسريعة وسلسة. أؤمن بأن البرمجة الجيدة تجمع بين الجماليات والأداء.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class='bx bxs-user text-blue-600 text-xl'></i>
+                                <span class="text-gray-700 dark:text-gray-300">الاسم: تقي الدين فضلاوي</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class='bx bxs-phone text-blue-600 text-xl'></i>
+                                <span class="text-gray-700 dark:text-gray-300">+213 675 388 165</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class='bx bxs-envelope text-blue-600 text-xl'></i>
+                                <span class="text-gray-700 dark:text-gray-300">takieddine.fadlaoui@univ-biskra.dz</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم المهارات (Skills) -->
+        <section id="skills" class="py-20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">المهارات</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">HTML</span>
+                                <span>94%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 94%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">CSS</span>
+                                <span>84%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">JavaScript</span>
+                                <span>74%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 74%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">React</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="123.png" alt="المهارات" class="max-w-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الخدمات (Services) -->
+        <section id="services" class="py-20 bg-white dark:bg-gray-900/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">الخدمات</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- بطاقة خدمة 1 -->
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                        <i class='bx bx-code-alt text-5xl text-blue-600'></i>
+                        <h3 class="text-xl font-semibold">تطوير واجهات</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">بناء مواقع متجاوبة وسريعة بأحدث التقنيات.</p>
+                        <a href="#" class="inline-block text-blue-600 hover:underline text-sm font-medium">اعرف أكثر →</a>
+                    </div>
+                    <!-- بطاقة خدمة 2 -->
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                        <i class='bx bx-server text-5xl text-purple-600'></i>
+                        <h3 class="text-xl font-semibold">تطوير خلفيات</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">إدارة قواعد البيانات وإنشاء APIs قوية.</p>
+                        <a href="#" class="inline-block text-purple-600 hover:underline text-sm font-medium">اعرف أكثر →</a>
+                    </div>
+                    <!-- بطاقة خدمة 3 -->
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                        <i class='bx bx-brush text-5xl text-pink-600'></i>
+                        <h3 class="text-xl font-semibold">تصميم UI/UX</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">تصاميم عصرية تركز على تجربة المستخدم.</p>
+                        <a href="#" class="inline-block text-pink-600 hover:underline text-sm font-medium">اعرف أكثر →</a>
+                    </div>
+                    <!-- بطاقة خدمة 4 -->
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-3">
+                        <i class='bx bxl-wordpress text-5xl text-blue-500'></i>
+                        <h3 class="text-xl font-semibold">ووردبريس</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">تطوير مواقع احترافية على ووردبريس.</p>
+                        <a href="#" class="inline-block text-blue-500 hover:underline text-sm font-medium">اعرف أكثر →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الأعمال (Portfolio) -->
+        <section id="portfolio" class="py-20">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">أعمالي</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl overflow-hidden group">
+                        <img src="blog-2.jpg" alt="عمل 1" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <h3 class="font-semibold">مشروع 1</h3>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden group">
+                        <img src="blog-3.jpg" alt="عمل 2" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <h3 class="font-semibold">مشروع 2</h3>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden group">
+                        <img src="blog-4.jpg" alt="عمل 3" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <h3 class="font-semibold">مشروع 3</h3>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden group">
+                        <img src="blog-5.jpg" alt="عمل 4" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <h3 class="font-semibold">مشروع 4</h3>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden group">
+                        <img src="blog-6.jpg" alt="عمل 5" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <h3 class="font-semibold">مشروع 5</h3>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden group">
+                        <img src="blog-7.jpg" alt="عمل 6" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="p-4">
+                            <h3 class="font-semibold">مشروع 6</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الاتصال (Contact) -->
+        <section id="contact" class="py-20 bg-white dark:bg-gray-900/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+                <div class="text-center mb-16">
+    I'm passionate about cutting-edge, pixel-perfect, beautiful interfaces and intuitively implemented UX.</p>
                 <div class="information">
                     <!-- Box 1 -->
                     <div class="info-box">
